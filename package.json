@@ -1,0 +1,17 @@
+{
+  "name": "elm_meetup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "elm": "^0.18.0",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "elm make FunWithFlags.elm --output=fun_with_flags.js; elm make Ports.elm --output=ports.js",
+    "build:watch": "nodemon --exec 'clear;npm run build' -e elm,html"
+  },
+  "author": "Štěpán Pilař (pilar@enerfis.cz)",
+  "license": "ISC"
+}
