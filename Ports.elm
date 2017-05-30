@@ -1,4 +1,4 @@
-port module Ports exposing (main)
+module Ports exposing (main)
 
 import Html exposing (Html, program, text, div, input, h1)
 import Html.Attributes exposing (placeholder, style, id)
@@ -13,18 +13,11 @@ type alias Model =
 
 
 type Msg
-    = OpenDatePicker
-    | DatePicked String
+    = Noop
 
 
 type alias HtmlId =
     String
-
-
-port openDatePicker : HtmlId -> Cmd msg
-
-
-port datePicked : (String -> msg) -> Sub msg
 
 
 main : Program Never Model Msg
@@ -32,19 +25,14 @@ main =
     program
         { init = { date = Nothing } ! []
         , update = update
-        , subscriptions = (\_ -> datePicked DatePicked)
+        , subscriptions = (\_ -> Sub.none)
         , view = view
         }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        OpenDatePicker ->
-            model ! [ openDatePicker dateInputId ]
-
-        DatePicked date ->
-            { model | date = Just date } ! []
+    model ! []
 
 
 dateInputId : HtmlId
@@ -56,12 +44,7 @@ view : Model -> Html Msg
 view model =
     let
         picked =
-            case model.date of
-                Nothing ->
-                    "No date picked yet"
-
-                Just date ->
-                    "Date picked: " ++ date
+            "No date picked yet"
     in
         container
             (Just ( "/Speakers.elm", "Native" ))
@@ -72,7 +55,6 @@ view model =
             , input
                 [ placeholder "Select a date"
                 , style inputStyles
-                , onFocus OpenDatePicker
                 , id dateInputId
                 ]
                 []

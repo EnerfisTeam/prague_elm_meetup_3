@@ -10,11 +10,6 @@
 <script type="text/javascript" src="ports.js"></script>
 <script type="text/javascript">
   var app = Elm.Ports.fullscreen();
-  app.ports.openDatePicker.subscribe(function (id) {
-    $('#' + id).datepicker({onSelect: function(date) {
-      app.ports.datePicked.send(date);
-    }}).datepicker('show');
-  });
 </script>
 </body>
 </html>

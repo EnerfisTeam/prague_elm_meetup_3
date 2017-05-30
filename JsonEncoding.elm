@@ -51,34 +51,9 @@ example =
 encodeMeters : List Meter -> String
 encodeMeters meters =
     meters
-        |> List.map encodeMeter
-        |> Json.Encode.list
-        |> Json.Encode.encode 2
-
-
-encodeMeter : Meter -> Json.Encode.Value
-encodeMeter meter =
-    Json.Encode.object
-        [ ( "id", Json.Encode.int meter.id )
-        , ( "automatic", Json.Encode.bool meter.automatic )
-        , ( "energy", Json.Encode.string (energyToString meter.energy) )
-        , ( "location", encodeLocation meter.location )
-        ]
-
-
-encodeLocation : Location -> Json.Encode.Value
-encodeLocation location =
-    Json.Encode.object
-        [ ( "building", Json.Encode.string location.building )
-        , ( "room", Json.Encode.string location.room )
-        ]
+        |> toString
 
 
 energyToString : Energy -> String
 energyToString energy =
-    case energy of
-        El ->
-            "el"
-
-        Wa ->
-            "wa"
+    ""

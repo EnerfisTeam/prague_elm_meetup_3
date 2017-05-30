@@ -1,6 +1,6 @@
 module FunWithFlags exposing (main)
 
-import Html exposing (Html, text, programWithFlags, h1)
+import Html exposing (Html, text, program, h1)
 import Types exposing (Meter)
 import View exposing (meterList, container)
 import Json.Decode
@@ -13,15 +13,9 @@ type alias Model =
     }
 
 
-type alias Flags =
-    { meters : Json.Decode.Value
-    , locale : String
-    }
-
-
-main : Program Flags Model msg
+main : Program Never Model msg
 main =
-    programWithFlags
+    program
         { init = init
         , update = (\_ model -> model ! [])
         , subscriptions = (\_ -> Sub.none)
@@ -29,22 +23,9 @@ main =
         }
 
 
-init : Flags -> ( Model, Cmd msg )
-init flags =
-    let
-        model =
-            { meters = [], locale = flags.locale }
-    in
-        case Json.Decode.decodeValue metersDecoder flags.meters of
-            Ok meters ->
-                { model | meters = meters } ! []
-
-            Err err ->
-                let
-                    _ =
-                        Debug.crash err
-                in
-                    model ! []
+init : ( Model, Cmd msg )
+init =
+    { meters = [], locale = "cs" } ! []
 
 
 view : Model -> Html msg

@@ -4,7 +4,6 @@ import Html exposing (Html, dl, dt, dd, text, h1)
 import View exposing (container)
 import Types exposing (Meter, Energy(..))
 import JsonEncoding exposing (energyToString)
-import Native.Speakers
 
 
 type alias Model =
@@ -48,4 +47,4 @@ eventView meter =
 
 t : String -> String
 t v =
-    Native.Speakers.t v
+    v

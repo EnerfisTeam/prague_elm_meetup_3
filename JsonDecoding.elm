@@ -68,37 +68,9 @@ decodeMeters json =
 
 metersDecoder : Json.Decode.Decoder (List Meter)
 metersDecoder =
-    Json.Decode.list meterDecoder
-
-
-meterDecoder : Json.Decode.Decoder Meter
-meterDecoder =
-    Json.Decode.map4 Meter
-        (Json.Decode.field "id" Json.Decode.int)
-        (Json.Decode.field "automatic" Json.Decode.bool)
-        (Json.Decode.field "energy" energyDecoder)
-        (Json.Decode.field "location" decodeLocation)
+    Json.Decode.fail "TODO"
 
 
 energyDecoder : Json.Decode.Decoder Energy
 energyDecoder =
-    Json.Decode.string
-        |> Json.Decode.andThen
-            (\s ->
-                case s of
-                    "el" ->
-                        Json.Decode.succeed El
-
-                    "wa" ->
-                        Json.Decode.succeed Wa
-
-                    _ ->
-                        Json.Decode.fail ("Unrecognized energy " ++ s)
-            )
-
-
-decodeLocation : Json.Decode.Decoder Location
-decodeLocation =
-    Json.Decode.map2 Location
-        (Json.Decode.field "building" Json.Decode.string)
-        (Json.Decode.field "room" Json.Decode.string)
+    Json.Decode.fail "TODO"
