@@ -7,7 +7,7 @@ import View exposing (container)
 
 main : Html a
 main =
-    container Nothing
+    container (Just ( "/Context.elm", "Context" ))
         [ div [ style [ ( "font-size", "1.2em" ), ( "margin-top", "3em" ) ] ]
             [ p []
                 [ text "We are "
@@ -24,13 +24,12 @@ main =
                 ]
             , a
                 [ href "https://www.enectiva.cz/en/about-enectiva" ]
-                [ img [ src "enectiva.png", alt "Enectiva" ] [] ]
-            , p []
-                [ a
-                    [ href "/JsonEncoding.elm"
-                    , style [ ( "float", "right" ), ( "margin-top", "3em" ), ( "display", "inline-block" ) ]
+                [ img
+                    [ src "/img/enectiva.svg"
+                    , alt "Enectiva"
+                    , style [ ( "width", "100%" ), ( "margin", "2em 0" ) ]
                     ]
-                    [ text "Let's generate some JSON in Elm ➡" ]
+                    []
                 ]
             ]
         ]

@@ -1,11 +1,10 @@
 module FunWithFlags exposing (main)
 
-import Html exposing (Html, text, programWithFlags, a, div, h1)
-import Html.Attributes exposing (href)
-import Types exposing (Meter, Energy(..), Location)
+import Html exposing (Html, text, programWithFlags, h1)
+import Types exposing (Meter)
 import View exposing (meterList, container)
 import Json.Decode
-import JsonDecoding exposing (decodeEnergy, metersDecoder)
+import JsonDecoding exposing (metersDecoder)
 
 
 type alias Model =
@@ -52,6 +51,6 @@ view : Model -> Html msg
 view model =
     container
         (Just ( "/ports.html", "Ports" ))
-        [ h1 [] [ text "Fun with flags" ]
+        [ h1 [] [ text ("Fun with flags (in " ++ model.locale ++ ")") ]
         , meterList model.meters
         ]

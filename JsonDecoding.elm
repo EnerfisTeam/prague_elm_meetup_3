@@ -1,4 +1,4 @@
-module JsonDecoding exposing (main, decodeEnergy, metersDecoder)
+module JsonDecoding exposing (main, energyDecoder, metersDecoder)
 
 import Html exposing (Html)
 import View exposing (triptych, code, meterList)
@@ -15,6 +15,7 @@ main =
         "/fun_with_flags.html"
         "Flags"
 
+
 json : String
 json =
     """[
@@ -23,7 +24,7 @@ json =
     "automatic": true,
     "energy": "el",
     "location": {
-      "building": "A",
+      "building": "CNGroup",
       "room": "050"
     }
   },
@@ -32,7 +33,7 @@ json =
     "automatic": false,
     "energy": "wa",
     "location": {
-      "building": "A",
+      "building": "CNGroup",
       "room": "070"
     }
   }
@@ -41,8 +42,8 @@ json =
 
 meters : List Meter
 meters =
-    [ Meter 1 True El (Location "A" "050")
-    , Meter 2 False Wa (Location "A" "070")
+    [ Meter 1 True El (Location "CNGroup" "050")
+    , Meter 2 False Wa (Location "CNGroup" "070")
     ]
 
 
@@ -71,12 +72,12 @@ meterDecoder =
     Json.Decode.map4 Meter
         (Json.Decode.field "id" Json.Decode.int)
         (Json.Decode.field "automatic" Json.Decode.bool)
-        (Json.Decode.field "energy" decodeEnergy)
+        (Json.Decode.field "energy" energyDecoder)
         (Json.Decode.field "location" decodeLocation)
 
 
-decodeEnergy : Json.Decode.Decoder Energy
-decodeEnergy =
+energyDecoder : Json.Decode.Decoder Energy
+energyDecoder =
     Json.Decode.string
         |> Json.Decode.andThen
             (\s ->

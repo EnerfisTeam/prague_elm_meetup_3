@@ -1,26 +1,25 @@
 module Speakers exposing (main)
 
-import Html exposing (Html, program, dl, dt, dd, text, h1)
+import Html exposing (Html, dl, dt, dd, text, h1)
 import View exposing (container)
+import Types exposing (Meter, Energy(..))
+import JsonEncoding exposing (energyToString)
 import Native.Speakers
 
 
 type alias Model =
-    Event
+    Meter
 
 
-type alias Event =
-    { name : String
-    , location : String
-    , date : String
-    }
-
-
-model : Event
+model : Meter
 model =
-    { name = "Prague Elm meetup"
-    , location = "CN Group"
-    , date = "Today"
+    { id = 42
+    , automatic = True
+    , location =
+        { building = "CNGroup"
+        , room = "050"
+        }
+    , energy = El
     }
 
 
@@ -33,16 +32,16 @@ main =
         ]
 
 
-eventView : Event -> Html msg
-eventView event =
+eventView : Meter -> Html msg
+eventView meter =
     dl
         []
-        [ dt [] [ text <| t "name" ]
-        , dd [] [ text event.name ]
+        [ dt [] [ text <| t "id" ]
+        , dd [] [ text <| toString meter.id ]
+        , dt [] [ text <| t "energy" ]
+        , dd [] [ text <| t <| energyToString meter.energy ]
         , dt [] [ text <| t "location" ]
-        , dd [] [ text event.location ]
-        , dt [] [ text <| t "date" ]
-        , dd [] [ text event.date ]
+        , dd [] [ text (meter.location.building ++ ", " ++ meter.location.room) ]
         ]
 
 

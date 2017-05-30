@@ -1,8 +1,10 @@
 var _user$project$Native_Speakers = function () {
   var translations = {
-    name: 'Název',
-    location: 'Místo konání',
-    date: 'Datum'
+    id: 'ID',
+    location: 'Poloha',
+    energy: 'Energie',
+    el: 'Elektřina',
+    wa: 'Voda'
   };
   return {
     't': function(v) {

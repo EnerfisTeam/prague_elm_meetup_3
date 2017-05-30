@@ -1,7 +1,7 @@
-module View exposing (triptych, panels, code, meterList, container)
+module View exposing (triptych, panels, code, meterList, container, logo)
 
 import Html exposing (..)
-import Html.Attributes exposing (style, href)
+import Html.Attributes exposing (style, href, src, width)
 import Types exposing (Meter)
 
 
@@ -24,7 +24,7 @@ container linkArgs children =
             [ style
                 [ ( "margin", "2em auto" )
                 , ( "width", "40em" )
-                , ("font-family", "Open Sans, sans-serif")
+                , ( "font-family", "Open Sans, sans-serif" )
                 ]
             ]
             (List.append children link)
@@ -32,13 +32,13 @@ container linkArgs children =
 
 linkStyles : List ( String, String )
 linkStyles =
-    [ ( "display", "inline-block" ), ( "margin", "1em 0 2em 0" ), ( "float", "right" ) ]
+    [ ( "display", "inline-block" ), ( "margin", "2em 0 4em 0" ), ( "float", "right" ) ]
 
 
 triptych : String -> Section a -> Section a -> Section a -> String -> String -> Html a
 triptych heading top left right url linkText =
     container
-        (Just (url, linkText))
+        (Just ( url, linkText ))
         [ h1 [] [ text heading ]
         , panels
             top
@@ -101,3 +101,10 @@ code str =
             ]
         ]
         [ text str ]
+
+
+logo : List (String, String) -> Html a
+logo styles =
+    img
+        [ src "/img/elm.svg", style styles ]
+        []

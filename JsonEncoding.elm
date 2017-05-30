@@ -1,4 +1,4 @@
-module JsonEncoding exposing (main)
+module JsonEncoding exposing (main, energyToString)
 
 import Html exposing (Html)
 import View exposing (triptych, meterList, code)
@@ -18,8 +18,8 @@ main =
 
 meters : List Meter
 meters =
-    [ Meter 1 True El (Location "A" "050")
-    , Meter 2 False Wa (Location "A" "070")
+    [ Meter 1 True El (Location "CNGroup" "050")
+    , Meter 2 False Wa (Location "CNGroup" "070")
     ]
 
 
@@ -31,7 +31,7 @@ example =
     "automatic": true,
     "energy": "el",
     "location": {
-      "building": "A",
+      "building": "CNGroup",
       "room": "050"
     }
   },
@@ -40,7 +40,7 @@ example =
     "automatic": false,
     "energy": "wa",
     "location": {
-      "building": "A",
+      "building": "CNGroup",
       "room": "070"
     }
   }
@@ -49,7 +49,6 @@ example =
 
 encodeMeters : List Meter -> String
 encodeMeters meters =
-    --toString meters
     meters
         |> List.map encodeMeter
         |> Json.Encode.list

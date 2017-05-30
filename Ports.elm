@@ -1,7 +1,7 @@
 port module Ports exposing (main)
 
-import Html exposing (Html, program, a, text, div, input, br, h1)
-import Html.Attributes exposing (href, placeholder, style, id)
+import Html exposing (Html, program, text, div, input, h1)
+import Html.Attributes exposing (placeholder, style, id)
 import Html.Events exposing (onFocus)
 import View exposing (container)
 import Json.Decode
