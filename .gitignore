@@ -2,3 +2,5 @@ node_modules
 elm-stuff
 .idea
 elm_meetup.iml
+fun_with_flags.js
+ports.js
