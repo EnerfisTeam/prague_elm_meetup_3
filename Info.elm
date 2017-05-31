@@ -7,8 +7,8 @@ import View exposing (container)
 
 main : Html a
 main =
-    container (Just ( "/Context.elm", "Context" ))
-        [ div [ style [ ( "font-size", "1.2em" ), ( "margin-top", "3em" ) ] ]
+    container (Just ( "/Topic.elm", "Topic" ))
+        [ div [ style [ ( "font-size", "1.2em" ), ( "margin-top", "5em" ) ] ]
             [ p []
                 [ text "We are "
                 , strong [] [ text "Štěpán Pilař" ]
