@@ -10,6 +10,7 @@ main =
     container Nothing
         [ div [ style [ ( "text-align", "center" ), ( "margin-top", "6em" ) ] ]
             [ h1 [] [ text "Hello, elmPrague #3!" ]
-            , a [ href "/Info.elm" ] [ logo [("width", "60%")] ]
+            , a [ href "/Info.elm" ] [ logo [ ( "width", "60%" ) ] ]
             ]
         ]
+        []

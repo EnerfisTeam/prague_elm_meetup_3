@@ -14,6 +14,10 @@ main =
         ( "Our work", ourWork )
         "/fun_with_flags.html"
         "Flags"
+        [ ( "http://eeue56.github.io/json-to-elm/", "Decoder/encoder generation online" )
+        , ( "https://github.com/eeue56/json-to-elm", "Decoder/encoder generation in Python" )
+        , ( "https://www.brianthicks.com", "Brian Hick's blog" )
+        ]
 
 
 json : String

@@ -77,6 +77,8 @@ view model =
                 ]
                 []
             ]
+            [ ( "https://elmtown.github.io/2017/05/09/history-in-elm-town-ports-episode-13.html", "History in Elm Town, Ports! - Episode 13" )
+            ]
 
 
 inputStyles : List ( String, String )

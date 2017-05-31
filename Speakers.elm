@@ -30,6 +30,7 @@ main =
         [ h1 [] [ text "Learning the language" ]
         , eventView model
         ]
+        []
 
 
 eventView : Meter -> Html msg

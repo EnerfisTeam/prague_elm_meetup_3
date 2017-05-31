@@ -12,3 +12,4 @@ main =
             [ style [ ( "font-size", "5em" ), ( "text-align", "center" ), ( "margin", "2em 0 5em 0" ) ] ]
             [ text "Elm + JS(ON)" ]
         ]
+        []

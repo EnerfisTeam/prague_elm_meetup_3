@@ -9,8 +9,8 @@ type alias Section a =
     ( String, Html a )
 
 
-container : Maybe ( String, String ) -> List (Html a) -> Html a
-container linkArgs children =
+container : Maybe ( String, String ) -> List (Html a) -> List ( String, String ) -> Html a
+container linkArgs children resources =
     let
         link =
             case linkArgs of
@@ -19,6 +19,15 @@ container linkArgs children =
 
                 Just ( url, linkText ) ->
                     [ a [ href url, style linkStyles ] [ text (linkText ++ " ➡") ] ]
+
+        rs =
+            if List.isEmpty resources then
+                []
+            else
+                resources
+                    |> List.map (\( url, t ) -> li [] [ a [ href url, style resourceLinkStyles ] [ text t ] ])
+                    |> ul [ style resourcesStyles ]
+                    |> List.singleton
     in
         div
             [ style
@@ -27,7 +36,7 @@ container linkArgs children =
                 , ( "font-family", "Open Sans, sans-serif" )
                 ]
             ]
-            (List.append children link)
+            ((children ++ link) ++ rs)
 
 
 linkStyles : List ( String, String )
@@ -35,8 +44,18 @@ linkStyles =
     [ ( "display", "inline-block" ), ( "margin", "2em 0 4em 0" ), ( "float", "right" ) ]
 
 
-triptych : String -> Section a -> Section a -> Section a -> String -> String -> Html a
-triptych heading top left right url linkText =
+resourcesStyles : List ( String, String )
+resourcesStyles =
+    [ ( "color", "#555" ), ( "list-style-type", "none" ), ( "padding", "0" ), ( "margin", "2em 0 2em 0" ), ( "line-height", "2em" ) ]
+
+
+resourceLinkStyles : List ( String, String )
+resourceLinkStyles =
+    [ ( "color", "#777" ) ]
+
+
+triptych : String -> Section a -> Section a -> Section a -> String -> String -> List ( String, String ) -> Html a
+triptych heading top left right url linkText resources =
     container
         (Just ( url, linkText ))
         [ h1 [] [ text heading ]
@@ -45,6 +64,7 @@ triptych heading top left right url linkText =
             left
             right
         ]
+        resources
 
 
 panels : Section a -> Section a -> Section a -> Html a
@@ -103,7 +123,7 @@ code str =
         [ text str ]
 
 
-logo : List (String, String) -> Html a
+logo : List ( String, String ) -> Html a
 logo styles =
     img
         [ src "/img/elm.svg", style styles ]

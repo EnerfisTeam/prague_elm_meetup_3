@@ -14,6 +14,7 @@ main =
         ( "Our work", code (encodeMeters meters) )
         "/JsonDecoding.elm"
         "Now the other way"
+        []
 
 
 meters : List Meter

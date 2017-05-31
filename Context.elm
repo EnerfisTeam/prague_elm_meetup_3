@@ -40,6 +40,9 @@ view step =
             , right step
             ]
         ]
+        [ ( "https://guide.elm-lang.org/interop/", "Docs on interop" )
+        , ( "https://elmtown.github.io/2016/11/07/js-in-elm-town-episode-4.html", "JS in Elm Town" )
+        ]
 
 
 update : Msg -> Step -> ( Step, Cmd Msg )

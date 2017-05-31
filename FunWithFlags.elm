@@ -54,3 +54,4 @@ view model =
         [ h1 [] [ text ("Fun with flags (in " ++ model.locale ++ ")") ]
         , meterList model.meters
         ]
+        []
